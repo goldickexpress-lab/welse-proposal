@@ -473,12 +473,14 @@
   .cost-table td:first-child {
     color: var(--white);
     font-weight: 600;
+    white-space: nowrap;
   }
 
   .cost-table td:last-child {
     color: var(--gold);
     font-weight: 700;
     text-align: right;
+    white-space: nowrap;
   }
 
   .cost-table tr:hover td {
@@ -495,6 +497,12 @@
   .cost-total td:last-child {
     font-size: 1.15rem;
     color: var(--gold);
+  }
+
+  @media (max-width: 700px) {
+    .cost-table td { padding: 12px 10px; font-size: 0.8rem; }
+    .cost-table td:first-child { white-space: normal; font-size: 0.78rem; }
+    .cost-total td:last-child { font-size: 1rem; }
   }
 
   /* ── PRICE TABS ── */
@@ -592,7 +600,14 @@
     margin-bottom: 14px;
     text-transform: uppercase;
   }
+  .panel-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
   @media (max-width: 700px) {
+    .panel-inner { grid-template-columns: 1fr; gap: 24px; }
     .price-panel-cols { grid-template-columns: 1fr; }
     .price-tabs { flex-direction: column; align-items: stretch; }
     .price-tab { max-width: 100%; }
@@ -1706,7 +1721,7 @@
 
     <!-- 탭 버튼 -->
     <div class="price-tabs reveal reveal-delay-1" style="margin-top:48px;">
-      <button class="price-tab active" onclick="switchPriceTab('m3')">
+      <button class="price-tab" onclick="switchPriceTab('m3')">
         <span class="ptab-label">3개월</span>
         <span class="ptab-sub">V1 · 고객 앱</span>
       </button>
@@ -1714,15 +1729,15 @@
         <span class="ptab-label">6개월</span>
         <span class="ptab-sub">V1+V2 · 팬덤 앱</span>
       </button>
-      <button class="price-tab" onclick="switchPriceTab('m9')">
+      <button class="price-tab active" onclick="switchPriceTab('m9')">
         <span class="ptab-label">9개월</span>
         <span class="ptab-sub">V1+V2+V3 · 완전체</span>
       </button>
     </div>
 
     <!-- 3개월 패널 -->
-    <div id="ptab-m3" class="price-panel">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+    <div id="ptab-m3" class="price-panel" style="display:none;">
+      <div class="panel-inner">
         <div>
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">포함 기능</p>
           <ul class="plan-list" style="margin:0;">
@@ -1743,9 +1758,9 @@
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">계약 금액</p>
           <table class="cost-table" style="margin:0;">
             <tbody>
-              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄 운영비</td><td style="text-align:right;font-size:0.85rem;">4,500만 원</td></tr>
-              <tr><td style="font-size:0.85rem;">B. 앱 전략 · 개발 PM</td><td style="text-align:right;font-size:0.85rem;">5,000만 원</td></tr>
-              <tr><td style="font-size:0.85rem;">C. 브랜드 런칭 기획비</td><td style="text-align:right;font-size:0.85rem;">2,500만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄</td><td style="text-align:right;font-size:0.85rem;">4,500만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">B. 앱 PM</td><td style="text-align:right;font-size:0.85rem;">5,000만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">C. 런칭 기획</td><td style="text-align:right;font-size:0.85rem;">2,500만 원</td></tr>
               <tr class="cost-total">
                 <td style="color:var(--gold);font-weight:800;">총 계약 금액</td>
                 <td style="text-align:right;font-size:1.5rem;font-weight:900;color:var(--gold);">1억 2,000만 원</td>
@@ -1760,7 +1775,7 @@
 
     <!-- 6개월 패널 -->
     <div id="ptab-m6" class="price-panel" style="display:none;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+      <div class="panel-inner">
         <div>
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">포함 기능</p>
           <ul class="plan-list" style="margin:0;">
@@ -1781,9 +1796,9 @@
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">계약 금액</p>
           <table class="cost-table" style="margin:0;">
             <tbody>
-              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄 운영비</td><td style="text-align:right;font-size:0.85rem;">9,000만 원</td></tr>
-              <tr><td style="font-size:0.85rem;">B. 앱 전략 · 개발 PM</td><td style="text-align:right;font-size:0.85rem;">7,500만 원</td></tr>
-              <tr><td style="font-size:0.85rem;">C. 브랜드 런칭 기획비</td><td style="text-align:right;font-size:0.85rem;">4,000만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄</td><td style="text-align:right;font-size:0.85rem;">9,000만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">B. 앱 PM</td><td style="text-align:right;font-size:0.85rem;">7,500만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">C. 런칭 기획</td><td style="text-align:right;font-size:0.85rem;">4,000만 원</td></tr>
               <tr class="cost-total">
                 <td style="color:var(--gold);font-weight:800;">총 계약 금액</td>
                 <td style="text-align:right;font-size:1.5rem;font-weight:900;color:var(--gold);">2억 500만 원</td>
@@ -1797,8 +1812,8 @@
     </div>
 
     <!-- 9개월 패널 -->
-    <div id="ptab-m9" class="price-panel" style="display:none;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start;">
+    <div id="ptab-m9" class="price-panel">
+      <div class="panel-inner">
         <div>
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">포함 기능</p>
           <ul class="plan-list" style="margin:0;">
@@ -1819,9 +1834,9 @@
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">계약 금액</p>
           <table class="cost-table" style="margin:0;">
             <tbody>
-              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄 운영비</td><td style="text-align:right;font-size:0.85rem;">1억 3,500만 원</td></tr>
-              <tr><td style="font-size:0.85rem;">B. 앱 전략 · 개발 PM</td><td style="text-align:right;font-size:0.85rem;">1억 원</td></tr>
-              <tr><td style="font-size:0.85rem;">C. 브랜드 런칭 기획비</td><td style="text-align:right;font-size:0.85rem;">5,500만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">A. 브랜드 총괄</td><td style="text-align:right;font-size:0.85rem;">1억 3,500만 원</td></tr>
+              <tr><td style="font-size:0.85rem;">B. 앱 PM</td><td style="text-align:right;font-size:0.85rem;">1억 원</td></tr>
+              <tr><td style="font-size:0.85rem;">C. 런칭 기획</td><td style="text-align:right;font-size:0.85rem;">5,500만 원</td></tr>
               <tr class="cost-total">
                 <td style="color:var(--gold);font-weight:800;">총 계약 금액</td>
                 <td style="text-align:right;font-size:1.5rem;font-weight:900;color:var(--gold);">2억 9,000만 원</td>
