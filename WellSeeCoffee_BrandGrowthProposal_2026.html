@@ -96,6 +96,7 @@
   /* ── HERO ── */
   #hero {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     padding: 0;
@@ -105,7 +106,7 @@
   .hero-inner {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 48px;
+    padding: 120px 48px 60px;
     width: 100%;
   }
 
@@ -1189,6 +1190,7 @@
     .hero-meta { flex-direction: column; gap: 24px; }
     .closing-pillars { gap: 2px; }
     .hamburger { display: flex !important; }
+    .hero-inner { padding: 140px 24px 60px; }
   }
 
   /* ── HAMBURGER ── */
@@ -1253,6 +1255,11 @@
 <body>
 
 <canvas id="particles"></canvas>
+<script>
+  // 페이지 로드 시 항상 최상단으로
+  if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+</script>
 
 <!-- ── NAV ── -->
 <nav>
@@ -1820,11 +1827,11 @@
       </button>
       <button class="price-tab" onclick="switchPriceTab('m6')">
         <span class="ptab-label">6개월</span>
-        <span class="ptab-sub">V1+V2 · 팬덤 앱</span>
+        <span class="ptab-sub" style="white-space:nowrap;">V1+V2 · 팬덤 앱</span>
       </button>
       <button class="price-tab active" onclick="switchPriceTab('m9')">
         <span class="ptab-label">9개월</span>
-        <span class="ptab-sub">V1+V2+V3 · 완전체</span>
+        <span class="ptab-sub" style="white-space:nowrap;">V1+V2+V3 · 완전체</span>
       </button>
     </div>
 
