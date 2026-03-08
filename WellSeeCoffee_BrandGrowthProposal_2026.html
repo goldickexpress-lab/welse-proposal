@@ -1188,6 +1188,65 @@
     .step-item:not(:last-child)::after { display: none; }
     .hero-meta { flex-direction: column; gap: 24px; }
     .closing-pillars { gap: 2px; }
+    .hamburger { display: flex !important; }
+  }
+
+  /* ── HAMBURGER ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: none;
+    border: none;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── MOBILE MENU OVERLAY ── */
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 18, 32, 0.97);
+    z-index: 150;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+  #mobile-menu.open { display: flex; }
+  .mobile-menu-item {
+    width: 100%;
+    text-align: center;
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255,215,0,0.08);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .mobile-menu-item:last-child { border-bottom: none; }
+  .mobile-menu-item:active { background: rgba(255,215,0,0.06); }
+  .mobile-menu-num {
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+  .mobile-menu-label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--light);
   }
 </style>
 </head>
@@ -1207,7 +1266,42 @@
     <li><a href="#cost">계약</a></li>
     <li><a href="#closing">맺음말</a></li>
   </ul>
+  <button class="hamburger" id="hamburger-btn" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ── MOBILE MENU ── -->
+<div id="mobile-menu">
+  <div class="mobile-menu-item" onclick="mobileGo('#overview')">
+    <div class="mobile-menu-num">01</div>
+    <div class="mobile-menu-label">제안 개요</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#background')">
+    <div class="mobile-menu-num">02</div>
+    <div class="mobile-menu-label">제안 배경</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#roles')">
+    <div class="mobile-menu-num">04</div>
+    <div class="mobile-menu-label">역할 및 범위</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#roadmap')">
+    <div class="mobile-menu-num">06</div>
+    <div class="mobile-menu-label">9개월 로드맵</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#app')">
+    <div class="mobile-menu-num">07</div>
+    <div class="mobile-menu-label">앱 구조 제안</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#cost')">
+    <div class="mobile-menu-num">09</div>
+    <div class="mobile-menu-label">계약 구조 및 금액</div>
+  </div>
+  <div class="mobile-menu-item" onclick="mobileGo('#closing')">
+    <div class="mobile-menu-num">—</div>
+    <div class="mobile-menu-label">맺음말</div>
+  </div>
+</div>
 
 <!-- ── HERO ── -->
 <section id="hero">
@@ -2172,6 +2266,23 @@ const appendixData = {
     note: '※ 구체적인 월 리테이너 금액은 9개월 계약 종료 시점에 브랜드 성장 규모·매장 수·운영 범위를 기준으로 함께 협의합니다.'
   }
 };
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('hamburger-btn');
+  const isOpen = menu.classList.contains('open');
+  menu.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+function mobileGo(hash) {
+  toggleMobileMenu();
+  setTimeout(() => {
+    const el = document.querySelector(hash);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 200);
+}
 
 function switchPriceTab(tab) {
   ['m3','m6','m9'].forEach(t => {
