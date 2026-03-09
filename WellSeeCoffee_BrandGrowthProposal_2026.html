@@ -1821,7 +1821,7 @@
 
     <!-- 탭 버튼 -->
     <div class="price-tabs reveal reveal-delay-1" style="margin-top:48px;">
-      <button class="price-tab" onclick="switchPriceTab('m3')">
+      <button class="price-tab active" onclick="switchPriceTab('m3')">
         <span class="ptab-label">3개월</span>
         <span class="ptab-sub">V1 · 고객 앱</span>
       </button>
@@ -1829,14 +1829,14 @@
         <span class="ptab-label">6개월</span>
         <span class="ptab-sub" style="white-space:nowrap;">V1+V2 · 팬덤 앱</span>
       </button>
-      <button class="price-tab active" onclick="switchPriceTab('m9')">
+      <button class="price-tab" onclick="switchPriceTab('m9')">
         <span class="ptab-label">9개월</span>
         <span class="ptab-sub" style="white-space:nowrap;">V1+V2+V3 · 완전체</span>
       </button>
     </div>
 
     <!-- 3개월 패널 -->
-    <div id="ptab-m3" class="price-panel" style="display:none;">
+    <div id="ptab-m3" class="price-panel">
       <div class="panel-inner">
         <div>
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">포함 기능</p>
@@ -1912,7 +1912,7 @@
     </div>
 
     <!-- 9개월 패널 -->
-    <div id="ptab-m9" class="price-panel">
+    <div id="ptab-m9" class="price-panel" style="display:none;">
       <div class="panel-inner">
         <div>
           <p style="font-size:0.72rem;color:var(--gray);letter-spacing:0.1em;margin-bottom:16px;">포함 기능</p>
